@@ -20,7 +20,7 @@ License: https://themeforest.net/licenses/standard
 7. Contact Form
 ------------------------------------------------------*/
 
-(function($) {
+(function ($) {
   "use strict";
 
   // Vars
@@ -103,9 +103,9 @@ License: https://themeforest.net/licenses/standard
       $('#navigation a[href="' + target + '"]')
         .parents("li")
         .addClass("active");
-      setTimeout(function() {
+      setTimeout(function () {
         if (!$body.hasClass("mobile") && isMotionReduce() === false) {
-          $(".site-part .animated").each(function() {
+          $(".site-part .animated").each(function () {
             var elem = $(this),
               animation = elem.data("animation");
             elem.removeClass(animation + " visible");
@@ -117,13 +117,13 @@ License: https://themeforest.net/licenses/standard
         if (!$body.hasClass("mobile") && isMotionReduce() === false) {
           $(target)
             .find(".animated")
-            .each(function() {
+            .each(function () {
               var elem = $(this),
                 animation = elem.data("animation");
               if (!elem.hasClass("visible")) {
                 var animationDelay = elem.data("animation-delay");
                 if (animationDelay) {
-                  setTimeout(function() {
+                  setTimeout(function () {
                     elem.addClass(animation + " visible");
                   }, animationDelay);
                 } else {
@@ -159,7 +159,7 @@ License: https://themeforest.net/licenses/standard
   }
 
   function muriel_navigation() {
-    $navToggle.on("click", function(e) {
+    $navToggle.on("click", function (e) {
       e.preventDefault();
       if (!$(this).hasClass("open")) {
         $(this).addClass("open");
@@ -170,7 +170,7 @@ License: https://themeforest.net/licenses/standard
       }
     });
 
-    $("body").on("click", "#navigation a, a.scrollto", function(e) {
+    $("body").on("click", "#navigation a, a.scrollto", function (e) {
       if (this.hash !== "") {
         if ($(this.hash).length > 0) {
           e.preventDefault();
@@ -188,14 +188,14 @@ License: https://themeforest.net/licenses/standard
     $('#navigation a[href="#' + firstPart + '"]').trigger("click");
   }
 
-  function muriel_hide_overlay(target) {}
+  function muriel_hide_overlay(target) { }
 
   // [4. Backgrounds]
   function muriel_backgrounds() {
     // Image
     var $bgImage = $(".bg-image-holder");
     if ($bgImage.length) {
-      $bgImage.each(function() {
+      $bgImage.each(function () {
         var src = $(this)
           .children("img")
           .attr("src");
@@ -217,10 +217,10 @@ License: https://themeforest.net/licenses/standard
         transition: "fade",
         transitionDuration: 1000,
         slides: [
-          { src: "assets/images/slider1.png" },
-          { src: "assets/images/slider2.png" },
-          { src: "assets/images/slider3.png" },
-          { src: "assets/images/slider4.png" }
+          { src: theme.template_URI + "/assets/images/slider1.png" },
+          { src: theme.template_URI + "/assets/images/slider2.png" },
+          { src: theme.template_URI + "/assets/images/slider3.png" },
+          { src: theme.template_URI + "/assets/images/slider4.png" }
         ]
       });
     }
@@ -287,7 +287,7 @@ License: https://themeforest.net/licenses/standard
         timer: false,
         delay: 10000,
         slides: kenburnsBackgrounds,
-        walk: function(nb) {
+        walk: function (nb) {
           if (kenburnsDisplayBackdrops === true) {
             var backdrop;
 
@@ -364,7 +364,7 @@ License: https://themeforest.net/licenses/standard
     }
 
     // Granim
-    $("[data-gradient-bg]").each(function(index, element) {
+    $("[data-gradient-bg]").each(function (index, element) {
       var granimParent = $(this),
         granimID = "granim-" + index + "",
         colours = granimParent.attr("data-gradient-bg"),
@@ -395,13 +395,13 @@ License: https://themeforest.net/licenses/standard
     var countdown = $(".countdown[data-countdown]");
 
     if (countdown.length > 0) {
-      countdown.each(function() {
+      countdown.each(function () {
         var $countdown = $(this),
           finalDate = $countdown.data("countdown");
-        $countdown.countdown(finalDate, function(event) {
+        $countdown.countdown(finalDate, function (event) {
           $countdown.html(
             event.strftime(
-              '<div class="countdown-container row"><div class="countdown-item col-6 col-sm-auto"><div class="number">%-D</div><span>Day%!d</span></div><div class="countdown-item col-6 col-sm-auto"><div class="number">%H</div><span>Hours</span></div><div class="countdown-item col-6 col-sm-auto"><div class="number">%M</div><span>Minutes</span></div><div class="countdown-item col-6 col-sm-auto"><div class="number">%S</div><span>Seconds</span></div></div>'
+              '<div class="countdown-container row"><div class="countdown-item col-6 col-sm-auto"><div class="number">%-D</div><span>Día%!d</span></div><div class="countdown-item col-6 col-sm-auto"><div class="number">%H</div><span>Horas</span></div><div class="countdown-item col-6 col-sm-auto"><div class="number">%M</div><span>Minutos</span></div><div class="countdown-item col-6 col-sm-auto"><div class="number">%S</div><span>Segundos</span></div></div>'
             )
           );
         });
@@ -416,23 +416,23 @@ License: https://themeforest.net/licenses/standard
       return true;
     }
 
-    subscribeForm.each(function() {
+    subscribeForm.each(function () {
       var el = $(this),
         elResult = el.find(".subscribe-form-result");
 
       el.find("form").validate({
-        submitHandler: function(form) {
+        submitHandler: function (form) {
           elResult.fadeOut(500);
 
           $(form).ajaxSubmit({
             target: elResult,
             dataType: "json",
             resetForm: true,
-            success: function(data) {
+            success: function (data) {
               elResult.html(data.message).fadeIn(500);
               if (data.alert != "error") {
                 $(form).clearForm();
-                setTimeout(function() {
+                setTimeout(function () {
                   elResult.fadeOut(500);
                 }, 5000);
               }
@@ -450,22 +450,22 @@ License: https://themeforest.net/licenses/standard
       return true;
     }
 
-    contactForm.each(function() {
+    contactForm.each(function () {
       var el = $(this),
         elResult = el.find(".contact-form-result");
 
       el.find("form").validate({
-        submitHandler: function(form) {
+        submitHandler: function (form) {
           elResult.fadeOut(500);
 
           $(form).ajaxSubmit({
             target: elResult,
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
               elResult.html(data.message).fadeIn(500);
               if (data.alert != "error") {
                 $(form).clearForm();
-                setTimeout(function() {
+                setTimeout(function () {
                   elResult.fadeOut(500);
                 }, 5000);
               }
@@ -477,13 +477,13 @@ License: https://themeforest.net/licenses/standard
   }
 
   // window load function
-  $(window).on("load", function() {
+  $(window).on("load", function () {
     muriel_pageLayout();
     muriel_preloader();
   });
 
   // document.ready function
-  $(document).ready(function($) {
+  $(document).ready(function ($) {
     muriel_pageLayout();
     muriel_navigation();
     muriel_backgrounds();
@@ -494,7 +494,7 @@ License: https://themeforest.net/licenses/standard
   });
 
   // window.resize function
-  $(window).on("resize", function() {
+  $(window).on("resize", function () {
     muriel_pageLayout();
     muriel_showSitePartResponsive();
   });
